@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+<script>
+function logIn(){
+    var email_id=document.getElementById('email_id').value;
+    var pass=document.getElementById('pass').value;
+    if(email_id!="" && pass!=""){
+        var arr=new Array(email_id, pass);
+        var jData=JSON.stringify(arr);
+        localStorage.setItem('uinfo', jData);
+        window.location='index.html';
+    }else{
+        alert('please insert email and pssword');
+    }
+}
+</script>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .btn-login{
+
+        padding: 10px 15px;
+        background-color: black;
+        color: white;
+    }
+    .overlay{
+        width: 100%;
+        position: fixed;
+        top: 0%;
+        /*image dena chIA*/
+        background: url(img/about/about_1.png);
+        height: 100vh;
+        z-index: -1;
+        opacity: 0;
+        transition: 1s;
+    }
+    .showoverlay{
+        opacity: 1;
+        z-index: 1;
+    }
+    .loginform{
+        width: 300px;
+        padding: 30px 20px;
+        background-color: white;
+        position: absolute;
+        transition: 2s;
+        left: 50%;
+        z-index: 9;
+        top: -50%;/*aita formke gaib korlo*/
+        box-shadow: 0px 0px 10px 3px #ccc;
+        transform: translate(-50%,-50%);
+    }
+    .showloginform{
+        top: 50% ;
+    }
+    .loginform input{
+        width: 100%;
+        margin-bottom: 15px;
+        height: 35px;
+    }
+    .loginform button{
+        background-color: black;
+        color: white;
+        padding: 10px 15px;
+
+    }
+    .loginform span{
+        position: absolute;
+        right: 0px;
+        width: 30px;
+        height: 30px;
+        background-color: green;
+        text-align: center;
+        top: 0px;
+    }
+</style>
+</head>
+<body>
+
+
+  <div class="container">
+    <div class="row">
+
+        <!-- nav section start here -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Resta</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Our Menu</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">Pages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="sign-up.html">SignUp</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="sign-in.html">SignIn</a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <!-- nav section end here -->
+    </div>
+
+
+   <button class="btn-login" >Login</button>
+
+   <div class="overlay" onclick="closeModel()"></div>
+   <div class="loginform">
+    <span>&times;</span>
+    <form action="">
+        <div>
+            <label for="">UserName</label>
+            <input type="text">
+        </div>
+        <div>
+            <label for="">E-mail</label>
+            <input type="email" name="email_id" id="email_id">
+        </div>
+        <div>
+        <lebel for="">Password</lebel>
+            <input type="password" name="pass" id="pass">
+            </div>
+            <button type="button" onclick="logIn()">LOGIN</button>
+    </form>
+   </div>
+
+</body>
+<script>
+    function showModel(){
+        document.querySelector('.overlay').classList.add('showoverlay');
+        document.querySelector('.loginform').classList.add('showloginform'); 
+    }
+    function closeModel(){
+        document.querySelector('.overlay').classList.remove('showoverlay');
+        document.querySelector('.loginform').classList.remove('showloginform'); 
+    }
+    var btnlogin=document.querySelector(".btn-login");
+    btnlogin.addEventListener("click",showModel)
+    var c=document.querySelector("span");
+    c.addEventListener("click",closeModel)
+</script>
+</html>
